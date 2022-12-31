@@ -48,4 +48,9 @@ public class ReticleMover : MonoBehaviour
         Vector3 adjustedReticlePosition = Camera.main.ViewportToWorldPoint(reticlePosition);
         _transform.position = new Vector3(adjustedReticlePosition.x, adjustedReticlePosition.y, 0f);
     }
+
+    public Vector2 GetAimPosition()
+    {
+        return _aimPosition;
+    }
 }
