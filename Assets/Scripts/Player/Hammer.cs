@@ -6,6 +6,8 @@ public class Hammer : MonoBehaviour
 {
     private Animator _animator;
 
+    public HitSender _sender;
+
     [SerializeField]
     private float _cooldown;
     private bool _isOnCooldown = false;
@@ -25,6 +27,7 @@ public class Hammer : MonoBehaviour
     {
         if (!_isOnCooldown)
         {
+            _sender.SendHit();
             _animator.SetTrigger("OnSwing");
             _coroutine = Cooldown(_cooldown);
             StartCoroutine(_coroutine);
