@@ -16,6 +16,12 @@ public class HitDetector : MonoBehaviour
     [SerializeField]
     private float _hitDistance;
 
+    [SerializeField]
+    private float _hitDamage;
+
+    [SerializeField]
+    public StockingFrame _frame;
+
     private List<GameObject> _targetList = new List<GameObject>();
 
     void OnEnable()
@@ -44,6 +50,7 @@ public class HitDetector : MonoBehaviour
         GameObject nearestTarget = GetNearestTarget(worldPosition, out float distance);
         if (Mathf.Abs(distance) <= _hitDistance)
         {
+            _frame.AddDamage(_hitDamage);
             _targetList.Remove(nearestTarget);
             _targetDestroyedEvent.RaiseEvent();
             Destroy(nearestTarget);

@@ -804,6 +804,7 @@ GameObject:
   - component: {fileID: 1396772080}
   - component: {fileID: 1396772082}
   - component: {fileID: 1396772083}
+  - component: {fileID: 1396772084}
   m_Layer: 0
   m_Name: StockingFrame
   m_TagString: Untagged
@@ -852,12 +853,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7bba8d76ffb79504dbb3d33c744f46a3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3276cf75a168bf849a4b9591a571e489, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 10, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -893,7 +894,7 @@ MonoBehaviour:
   _targetDestroyedEvent: {fileID: 11400000, guid: 48f176fcc8998e84686022b5e0ad6a08, type: 2}
   _targetPrefab: {fileID: 7189422850980278033, guid: 808a7928b59f10143b689049b8e7ecc1, type: 3}
   _detector: {fileID: 1396772083}
-  _boundsMargin: 0.1
+  _boundsMargin: 0.5
   _maxTargets: 3
 --- !u!114 &1396772083
 MonoBehaviour:
@@ -910,3 +911,24 @@ MonoBehaviour:
   _hitSendEvent: {fileID: 11400000, guid: d314cb942875ca34eb5c8761919677e1, type: 2}
   _targetDestroyedEvent: {fileID: 11400000, guid: 48f176fcc8998e84686022b5e0ad6a08, type: 2}
   _hitDistance: 1
+  _hitDamage: 1
+  _frame: {fileID: 1396772084}
+--- !u!114 &1396772084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396772079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e22963c55aebf7489663454e4833a7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnHealth: 3
+  _frameSprites:
+  - {fileID: 21300000, guid: 3276cf75a168bf849a4b9591a571e489, type: 3}
+  - {fileID: 21300000, guid: 4e611acac2af9c343b45490b1848eab9, type: 3}
+  - {fileID: 21300000, guid: fae01e7949cdaa8439f1bed50d9a28b5, type: 3}
+  - {fileID: 21300000, guid: 22dde7638b923834f8bcb60bba57aa03, type: 3}
+  _destroyTime: 0.3
