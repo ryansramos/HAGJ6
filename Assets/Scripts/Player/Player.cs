@@ -8,6 +8,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private InputReader _input;
 
+    [SerializeField]
+    public Hammer 
+        LHammer,
+        RHammer;
+
     void OnEnable()
     {
         _input.OnPrimaryEvent += OnPrimary;
@@ -23,10 +28,12 @@ public class Player : MonoBehaviour
 
     void OnPrimary()
     {
+        LHammer.Swing();
     }
 
     void OnSecondary()
     {
+        RHammer.Swing();
     }
 
     void OnInteract()
