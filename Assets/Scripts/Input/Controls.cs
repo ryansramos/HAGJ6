@@ -53,6 +53,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Value"",
+                    ""id"": ""904a600d-e40d-4265-b7e6-648cbbe1976d"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -88,6 +97,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d65a7270-24d5-47ec-ac0a-403e3c05ba4b"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""default"",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -105,6 +125,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Gameplay_Primary = m_Gameplay.FindAction("Primary", throwIfNotFound: true);
         m_Gameplay_Secondary = m_Gameplay.FindAction("Secondary", throwIfNotFound: true);
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
+        m_Gameplay_Aim = m_Gameplay.FindAction("Aim", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -167,6 +188,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Primary;
     private readonly InputAction m_Gameplay_Secondary;
     private readonly InputAction m_Gameplay_Interact;
+    private readonly InputAction m_Gameplay_Aim;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -174,6 +196,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Primary => m_Wrapper.m_Gameplay_Primary;
         public InputAction @Secondary => m_Wrapper.m_Gameplay_Secondary;
         public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
+        public InputAction @Aim => m_Wrapper.m_Gameplay_Aim;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -192,6 +215,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
+                @Aim.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAim;
+                @Aim.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAim;
+                @Aim.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAim;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -205,6 +231,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
             }
         }
     }
@@ -223,5 +252,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnPrimary(InputAction.CallbackContext context);
         void OnSecondary(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
     }
 }

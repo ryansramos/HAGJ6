@@ -12,6 +12,7 @@ public class InputReader : ScriptableObject, Controls.IGameplayActions
     public event UnityAction OnPrimaryEvent;
     public event UnityAction OnSecondaryEvent;
     public event UnityAction OnInteractEvent;
+    public event UnityAction<Vector2> OnAimEvent;
 
     void OnEnable()
     {
@@ -49,6 +50,12 @@ public class InputReader : ScriptableObject, Controls.IGameplayActions
                 OnInteractEvent?.Invoke();
                 return;
         }
+    }
+
+    public void OnAim(InputAction.CallbackContext context)
+    {
+        Vector2 aimPosition = context.ReadValue<Vector2>();
+        OnAimEvent?.Invoke(aimPosition);
     }
 
     // Enable/disable
