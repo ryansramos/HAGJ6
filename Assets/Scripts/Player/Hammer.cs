@@ -10,8 +10,10 @@ public class Hammer : MonoBehaviour
     public CooldownBar cooldownBar;
 
     [SerializeField]
-    private float _cooldown;
+    private HammerSettingsSO _settings;
+
     private bool _isOnCooldown = false;
+    private bool _resetInput = false;
     private IEnumerator _coroutine;
 
     void Awake()
@@ -30,28 +32,100 @@ public class Hammer : MonoBehaviour
         {
             sender.SendHit();
             _animator.SetTrigger("OnSwing");
-            _coroutine = Cooldown(_cooldown);
+            _coroutine = CooldownStart();
             StartCoroutine(_coroutine);
         }
     }
 
-    IEnumerator Cooldown(float duration)
+    public void TryResetCooldown()
     {
-        if (duration == 0f)
+        if (_isOnCooldown)
+        {
+            _resetInput = true;
+        }
+    }
+
+    IEnumerator CooldownStart()
+    {
+        if (_settings.CooldownTime == 0f)
         {
             yield break;
         }
         _isOnCooldown = true;
         cooldownBar.StartCooldown();
         float timer = 0f;
-        while (timer < duration)
+        while (timer < _settings.CooldownTime * _settings.CooldownPerfectStart)
         {
-            float percentComplete = timer / duration;
-            cooldownBar.UpdateSlider(percentComplete);
+            if (_resetInput)
+            {
+                StartCoroutine(CooldownPunish(timer));
+                yield break;
+            }
+            UpdateCooldownSlider(timer);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        StartCoroutine(CooldownPerfect(timer));
+    }
+
+    IEnumerator CooldownPerfect(float startTime)
+    {
+        float timer = startTime;
+        while (timer < _settings.CooldownTime * _settings.CooldownPerfectEnd)
+        {
+            if (_resetInput)
+            {
+                OnCooldownFinished();
+                yield break;
+            }
+            UpdateCooldownSlider(timer);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        StartCoroutine(CooldownEnd(timer));
+    }
+
+    IEnumerator CooldownEnd(float startTime)
+    {
+        float timer = startTime;
+        while (timer < _settings.CooldownTime)
+        {
+            if (_resetInput)
+            {
+                StartCoroutine(CooldownPunish(timer));
+                yield break;
+            }
+            UpdateCooldownSlider(timer);
             timer += Time.deltaTime;
             yield return null;
         }
         cooldownBar.CooldownFinished();
+        _isOnCooldown = false;
+    }
+
+    IEnumerator CooldownPunish(float startTime)
+    {
+        float timer = startTime;
+        while (timer < _settings.CooldownTime * _settings.CooldownPunishMod)
+        {
+            float percentComplete = timer / (_settings.CooldownTime * _settings.CooldownPunishMod);
+            cooldownBar.UpdateSlider(percentComplete);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        OnCooldownFinished();
+    }
+
+    void UpdateCooldownSlider(float currentTime)
+    {
+        float percentComplete = currentTime / _settings.CooldownTime;
+        cooldownBar.UpdateSlider(percentComplete);
+    }
+
+    void OnCooldownFinished()
+    {
+        cooldownBar.CooldownFinished();
+        _resetInput = false;
         _isOnCooldown = false;
     }
 }

@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class CooldownBar : MonoBehaviour
 {
+    [SerializeField]
+    private HammerSettingsSO _settings;
     public SpriteRenderer BarRenderer;
     public Sprite[] BarSprites;
     public GameObject Slider;
+    public GameObject PerfectRegion;
     
     private float _barHeight;
     private float _leftBarBound;
@@ -20,6 +23,7 @@ public class CooldownBar : MonoBehaviour
         BarRenderer.sprite = BarSprites[0];
         Slider.SetActive(false);
         CalculateBarBounds();
+        PlacePerfectRegion();
     }
 
     public void StartCooldown()
@@ -62,5 +66,21 @@ public class CooldownBar : MonoBehaviour
         _leftBarBound = BarRenderer.transform.position.x - bounds.extents.x;
         _rightBarBound = BarRenderer.transform.position.x + bounds.extents.x;
         _barHeight = BarRenderer.transform.position.y;
+    }
+
+    void PlacePerfectRegion()
+    {
+        float xCenterPercent = (_settings.CooldownPerfectEnd + _settings.CooldownPerfectStart) / 2;
+        Debug.Log(xCenterPercent);
+        float xPosition;
+        if (_flipX)
+        {
+            xPosition = xCenterPercent * (_leftBarBound - _rightBarBound) + _rightBarBound;
+        }
+        else
+        {
+            xPosition = xCenterPercent * (_rightBarBound - _leftBarBound) + _leftBarBound;
+        }
+        PerfectRegion.transform.position = new Vector3(xPosition, _barHeight, 0f);
     }
 }

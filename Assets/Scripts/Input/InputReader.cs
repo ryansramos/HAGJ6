@@ -11,6 +11,8 @@ public class InputReader : ScriptableObject, Controls.IGameplayActions
     private Controls.GameplayActions _gameplay;
     public event UnityAction OnPrimaryEvent;
     public event UnityAction OnSecondaryEvent;
+    public event UnityAction OnResetPrimaryEvent;
+    public event UnityAction OnResetSecondaryEvent;
     public event UnityAction OnInteractEvent;
     public event UnityAction<Vector2> OnAimEvent;
 
@@ -42,6 +44,27 @@ public class InputReader : ScriptableObject, Controls.IGameplayActions
                 return;
         }
     }
+
+    public void OnResetPrimary(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Started:
+                OnResetPrimaryEvent?.Invoke();
+                return;
+        }
+    }
+
+    public void OnResetSecondary(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Started:
+                OnResetSecondaryEvent?.Invoke();
+                return;
+        }
+    }
+
     public void OnInteract(InputAction.CallbackContext context)
     {
         switch (context.phase)

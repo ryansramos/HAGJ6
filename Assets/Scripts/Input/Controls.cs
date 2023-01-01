@@ -62,6 +62,24 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ResetPrimary"",
+                    ""type"": ""Button"",
+                    ""id"": ""6662788d-c80e-4684-939f-cea25f6daccf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ResetSecondary"",
+                    ""type"": ""Button"",
+                    ""id"": ""91c1b518-2cb1-42fd-9dee-f891f5e370b6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -108,6 +126,28 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e34bb286-3a6d-4105-a026-f3fd30d92c14"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetPrimary"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ecfd9793-edfc-4f9d-b890-fcbbccbf5c3c"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetSecondary"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -126,6 +166,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Gameplay_Secondary = m_Gameplay.FindAction("Secondary", throwIfNotFound: true);
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
         m_Gameplay_Aim = m_Gameplay.FindAction("Aim", throwIfNotFound: true);
+        m_Gameplay_ResetPrimary = m_Gameplay.FindAction("ResetPrimary", throwIfNotFound: true);
+        m_Gameplay_ResetSecondary = m_Gameplay.FindAction("ResetSecondary", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -189,6 +231,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Secondary;
     private readonly InputAction m_Gameplay_Interact;
     private readonly InputAction m_Gameplay_Aim;
+    private readonly InputAction m_Gameplay_ResetPrimary;
+    private readonly InputAction m_Gameplay_ResetSecondary;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -197,6 +241,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Secondary => m_Wrapper.m_Gameplay_Secondary;
         public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
         public InputAction @Aim => m_Wrapper.m_Gameplay_Aim;
+        public InputAction @ResetPrimary => m_Wrapper.m_Gameplay_ResetPrimary;
+        public InputAction @ResetSecondary => m_Wrapper.m_Gameplay_ResetSecondary;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -218,6 +264,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Aim.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAim;
                 @Aim.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAim;
                 @Aim.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAim;
+                @ResetPrimary.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnResetPrimary;
+                @ResetPrimary.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnResetPrimary;
+                @ResetPrimary.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnResetPrimary;
+                @ResetSecondary.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnResetSecondary;
+                @ResetSecondary.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnResetSecondary;
+                @ResetSecondary.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnResetSecondary;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -234,6 +286,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Aim.started += instance.OnAim;
                 @Aim.performed += instance.OnAim;
                 @Aim.canceled += instance.OnAim;
+                @ResetPrimary.started += instance.OnResetPrimary;
+                @ResetPrimary.performed += instance.OnResetPrimary;
+                @ResetPrimary.canceled += instance.OnResetPrimary;
+                @ResetSecondary.started += instance.OnResetSecondary;
+                @ResetSecondary.performed += instance.OnResetSecondary;
+                @ResetSecondary.canceled += instance.OnResetSecondary;
             }
         }
     }
@@ -253,5 +311,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnSecondary(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
+        void OnResetPrimary(InputAction.CallbackContext context);
+        void OnResetSecondary(InputAction.CallbackContext context);
     }
 }
