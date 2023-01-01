@@ -17,12 +17,16 @@ public class Player : MonoBehaviour
     {
         _input.OnPrimaryEvent += OnPrimary;
         _input.OnSecondaryEvent += OnSecondary;
+        _input.OnResetPrimaryEvent += OnResetPrimary;
+        _input.OnResetSecondaryEvent += OnResetSecondary;
         _input.OnInteractEvent += OnInteract;
     }
     void OnDisable()
     {
         _input.OnPrimaryEvent -= OnPrimary;
         _input.OnSecondaryEvent -= OnSecondary;
+        _input.OnResetPrimaryEvent -= OnResetPrimary;
+        _input.OnResetSecondaryEvent -= OnResetSecondary;
         _input.OnInteractEvent -= OnInteract;
     }
 
@@ -34,6 +38,16 @@ public class Player : MonoBehaviour
     void OnSecondary()
     {
         RHammer.Swing();
+    }
+
+    void OnResetPrimary()
+    {
+        LHammer.TryResetCooldown();
+    }
+
+    void OnResetSecondary()
+    {
+        RHammer.TryResetCooldown();
     }
 
     void OnInteract()
