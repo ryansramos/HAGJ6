@@ -6,7 +6,8 @@ public class Hammer : MonoBehaviour
 {
     private Animator _animator;
 
-    public HitSender _sender;
+    public HitSender sender;
+    public CooldownBar cooldownBar;
 
     [SerializeField]
     private float _cooldown;
@@ -27,7 +28,7 @@ public class Hammer : MonoBehaviour
     {
         if (!_isOnCooldown)
         {
-            _sender.SendHit();
+            sender.SendHit();
             _animator.SetTrigger("OnSwing");
             _coroutine = Cooldown(_cooldown);
             StartCoroutine(_coroutine);
@@ -36,8 +37,21 @@ public class Hammer : MonoBehaviour
 
     IEnumerator Cooldown(float duration)
     {
+        if (duration == 0f)
+        {
+            yield break;
+        }
         _isOnCooldown = true;
-        yield return new WaitForSeconds(duration);
+        cooldownBar.StartCooldown();
+        float timer = 0f;
+        while (timer < duration)
+        {
+            float percentComplete = timer / duration;
+            cooldownBar.UpdateSlider(percentComplete);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        cooldownBar.CooldownFinished();
         _isOnCooldown = false;
     }
 }
