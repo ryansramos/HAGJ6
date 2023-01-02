@@ -7,8 +7,13 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     private InputReader _input;
 
-    void OnEnable()
+    public void StartGameplay()
     {
         _input.EnableGameplay(true);
+    }
+
+    public void StopGameplay()
+    {
+        _input.EnableGameplay(false);
     }
 }
