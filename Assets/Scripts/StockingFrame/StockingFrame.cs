@@ -25,10 +25,15 @@ public class StockingFrame : MonoBehaviour
         _renderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    void OnEnable()
+    public void OnGameStart()
     {
         _currentHealth = _spawnHealth;
         _renderer.sprite = _frameSprites[0];
+    }
+
+    public void OnGameOver()
+    {
+        StopAllCoroutines();
     }
 
     public void AddDamage(float damage)

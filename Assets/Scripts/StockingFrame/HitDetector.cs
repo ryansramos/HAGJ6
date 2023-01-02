@@ -26,17 +26,29 @@ public class HitDetector : MonoBehaviour
 
     void OnEnable()
     {
-        _targetList.Clear();
-    }
-
-    void Start()
-    {
         _hitSendEvent.OnEventRaised += OnHitSend;
     }
 
     void OnDisable()
     {
         _hitSendEvent.OnEventRaised -= OnHitSend;
+    }
+
+    public void OnGameStart()
+    {
+        _targetList.Clear();
+    }
+
+    public void OnGameOver()
+    {
+        if (_targetList.Count > 0)
+        {
+            foreach (GameObject target in _targetList)
+            {
+                Destroy(target);
+            }
+        }
+        _targetList.Clear();
     }
 
     void OnHitSend(Vector3 position)

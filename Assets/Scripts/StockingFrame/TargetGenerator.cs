@@ -34,17 +34,27 @@ public class TargetGenerator : MonoBehaviour
     }
     void OnEnable()
     {
-        CalculateBounds();
-        _currentTargets = 0;
+        _targetDestroyedEvent.OnEventRaised += OnTargetDestroyed;
     }
 
     void Start()
     {
-        _targetDestroyedEvent.OnEventRaised += OnTargetDestroyed;
+        CalculateBounds();
     }
+
     void OnDisable()
     {
         _targetDestroyedEvent.OnEventRaised -= OnTargetDestroyed;
+    }
+
+    public void OnGameStart()
+    {
+        _currentTargets = 0;
+    }
+
+    public void OnGameOver()
+    {
+
     }
 
     void Update()

@@ -20,10 +20,19 @@ public class CooldownBar : MonoBehaviour
 
     void OnEnable()
     {
-        BarRenderer.sprite = BarSprites[0];
-        Slider.SetActive(false);
         CalculateBarBounds();
         PlacePerfectRegion();
+    }
+
+    public void OnGameStart()
+    {
+        CooldownFinished();
+    }
+
+    public void OnGameOver()
+    {
+        StopAllCoroutines();
+        CooldownFinished();
     }
 
     public void StartCooldown()
