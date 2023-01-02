@@ -359,6 +359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: {fileID: 1521341724}
   input: {fileID: 1313938362}
+  score: {fileID: 1744523054}
 --- !u!4 &259379061
 Transform:
   m_ObjectHideFlags: 0
@@ -1783,6 +1784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e22963c55aebf7489663454e4833a7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _onFrameDestroyedEvent: {fileID: 11400000, guid: 84f9e8423c318294da5cc9e0aa1186ec, type: 2}
   _spawnHealth: 3
   _frameSprites:
   - {fileID: 21300000, guid: 3276cf75a168bf849a4b9591a571e489, type: 3}
@@ -2103,6 +2105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1744523053}
+  - component: {fileID: 1744523054}
   m_Layer: 0
   m_Name: Scorebar
   m_TagString: Untagged
@@ -2128,6 +2131,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1744523054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744523052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 908e6eddf4993b64eada35b540d0b23d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _settings: {fileID: 11400000, guid: c641879b430660d49a59d53e43e7933a, type: 2}
+  _onFrameDestroyedEvent: {fileID: 11400000, guid: 84f9e8423c318294da5cc9e0aa1186ec, type: 2}
+  onScoreCompleteEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _meterMask: {fileID: 1360000376}
 --- !u!1 &1980122375
 GameObject:
   m_ObjectHideFlags: 0

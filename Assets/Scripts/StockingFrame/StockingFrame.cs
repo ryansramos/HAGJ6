@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class StockingFrame : MonoBehaviour
 {
+    [Header("Broadcasting on")]
+    [SerializeField]
+    private VoidEventChannelSO _onFrameDestroyedEvent;
+
     [Range(0.01f, 3f)]
     [SerializeField]
     private float _spawnHealth;
@@ -41,6 +45,7 @@ public class StockingFrame : MonoBehaviour
     IEnumerator OnFrameDestroyed()
     {
         _renderer.sprite = _frameSprites[3];
+        _onFrameDestroyedEvent.RaiseEvent();
         yield return new WaitForSeconds(_destroyTime);
         _currentHealth = _spawnHealth;
         UpdateSprite();

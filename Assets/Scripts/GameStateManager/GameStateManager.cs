@@ -6,15 +6,18 @@ public class GameStateManager : MonoBehaviour
 {
     public GameTimer timer;
     public InputManager input;
+    public Scorekeeper score;
 
     void OnEnable()
     {
         timer.gameTimeElapsedEvent.AddListener(OnGameTimerElapsed);
+        score.onScoreCompleteEvent.AddListener(OnScoreComplete);
     }
 
     void OnDisable()
     {
         timer.gameTimeElapsedEvent.RemoveListener(OnGameTimerElapsed);
+        score.onScoreCompleteEvent.RemoveListener(OnScoreComplete);
     }
 
     void Start()
@@ -26,10 +29,21 @@ public class GameStateManager : MonoBehaviour
     {
         timer.StartTimer();
         input.StartGameplay();
+        score.StartGameplay();
+    }
+
+    void StopGame()
+    {
+        input.StopGameplay();
     }
 
     void OnGameTimerElapsed()
     {
-        input.StopGameplay();
+        StopGame();
+    }
+
+    void OnScoreComplete()
+    {
+        StopGame();
     }
 }
