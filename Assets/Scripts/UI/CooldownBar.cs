@@ -71,7 +71,6 @@ public class CooldownBar : MonoBehaviour
     void PlacePerfectRegion()
     {
         float xCenterPercent = (_settings.CooldownPerfectEnd + _settings.CooldownPerfectStart) / 2;
-        Debug.Log(xCenterPercent);
         float xPosition;
         if (_flipX)
         {
