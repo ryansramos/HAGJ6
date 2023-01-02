@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Events;
 
 [CreateAssetMenu(menuName = "Input Reader")]
-public class InputReader : ScriptableObject, Controls.IGameplayActions
+public class InputReader : ScriptableObject, Controls.IGameplayActions, Controls.IMenusActions
 {
     private Controls _controls;
     private Controls.GameplayActions _gameplay;
@@ -16,6 +16,10 @@ public class InputReader : ScriptableObject, Controls.IGameplayActions
     public event UnityAction OnInteractEvent;
     public event UnityAction<Vector2> OnAimEvent;
 
+    // Menus
+    private Controls.MenusActions _menus;
+    public event UnityAction OnProceedEvent;
+
     void OnEnable()
     {
         if( _controls == null)
@@ -23,6 +27,8 @@ public class InputReader : ScriptableObject, Controls.IGameplayActions
             _controls = new Controls();
             _gameplay = _controls.Gameplay;
             _gameplay.SetCallbacks(this);
+            _menus = _controls.Menus;
+            _menus.SetCallbacks(this);
         }
     }
 
@@ -81,6 +87,16 @@ public class InputReader : ScriptableObject, Controls.IGameplayActions
         OnAimEvent?.Invoke(aimPosition);
     }
 
+    public void OnProceed(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Started:
+                OnProceedEvent?.Invoke();
+                return;
+        }
+    }
+
     // Enable/disable
     public void EnableGameplay(bool status)
     {
@@ -91,6 +107,18 @@ public class InputReader : ScriptableObject, Controls.IGameplayActions
         else
         {
             _gameplay.Disable();
+        }
+    }
+
+    public void EnableMenus(bool status)
+    {
+        if (status)
+        {
+            _menus.Enable();
+        }
+        else
+        {
+            _menus.Disable();
         }
     }
 }

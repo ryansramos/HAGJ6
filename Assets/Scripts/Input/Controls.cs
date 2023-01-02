@@ -150,6 +150,45 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Menus"",
+            ""id"": ""fb67e836-4f45-4237-bd0d-681d7ae62efb"",
+            ""actions"": [
+                {
+                    ""name"": ""Proceed"",
+                    ""type"": ""Button"",
+                    ""id"": ""322fac4b-5b31-4bd0-b479-fb6d5884aed8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""a4e10f63-2c00-4fc9-acc5-2167fcb9e5dc"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Proceed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""172527f0-41dc-4676-b321-6a0f08ea39f2"",
+                    ""path"": ""<Mouse>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""default"",
+                    ""action"": ""Proceed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -168,6 +207,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Gameplay_Aim = m_Gameplay.FindAction("Aim", throwIfNotFound: true);
         m_Gameplay_ResetPrimary = m_Gameplay.FindAction("ResetPrimary", throwIfNotFound: true);
         m_Gameplay_ResetSecondary = m_Gameplay.FindAction("ResetSecondary", throwIfNotFound: true);
+        // Menus
+        m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
+        m_Menus_Proceed = m_Menus.FindAction("Proceed", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -296,6 +338,39 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         }
     }
     public GameplayActions @Gameplay => new GameplayActions(this);
+
+    // Menus
+    private readonly InputActionMap m_Menus;
+    private IMenusActions m_MenusActionsCallbackInterface;
+    private readonly InputAction m_Menus_Proceed;
+    public struct MenusActions
+    {
+        private @Controls m_Wrapper;
+        public MenusActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Proceed => m_Wrapper.m_Menus_Proceed;
+        public InputActionMap Get() { return m_Wrapper.m_Menus; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenusActions set) { return set.Get(); }
+        public void SetCallbacks(IMenusActions instance)
+        {
+            if (m_Wrapper.m_MenusActionsCallbackInterface != null)
+            {
+                @Proceed.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnProceed;
+                @Proceed.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnProceed;
+                @Proceed.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnProceed;
+            }
+            m_Wrapper.m_MenusActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Proceed.started += instance.OnProceed;
+                @Proceed.performed += instance.OnProceed;
+                @Proceed.canceled += instance.OnProceed;
+            }
+        }
+    }
+    public MenusActions @Menus => new MenusActions(this);
     private int m_defaultSchemeIndex = -1;
     public InputControlScheme defaultScheme
     {
@@ -313,5 +388,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnAim(InputAction.CallbackContext context);
         void OnResetPrimary(InputAction.CallbackContext context);
         void OnResetSecondary(InputAction.CallbackContext context);
+    }
+    public interface IMenusActions
+    {
+        void OnProceed(InputAction.CallbackContext context);
     }
 }
