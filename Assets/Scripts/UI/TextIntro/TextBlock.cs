@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class TextBlock
 {
-    [TextArea(2,3)]
+    [TextArea(2,10)]
     [SerializeField]
     public string Text;
 }
