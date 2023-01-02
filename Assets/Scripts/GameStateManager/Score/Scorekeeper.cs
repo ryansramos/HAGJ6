@@ -46,4 +46,9 @@ public class Scorekeeper : MonoBehaviour
     {
         onScoreCompleteEvent?.Invoke();
     }
+
+    public int GetScore()
+    {
+        return _score;
+    }
 }
