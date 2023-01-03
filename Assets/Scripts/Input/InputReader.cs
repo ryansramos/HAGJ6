@@ -13,6 +13,7 @@ public class InputReader : ScriptableObject, Controls.IGameplayActions, Controls
     public event UnityAction OnSecondaryEvent;
     public event UnityAction OnResetPrimaryEvent;
     public event UnityAction OnResetSecondaryEvent;
+    public event UnityAction OnRageEvent;
     public event UnityAction OnInteractEvent;
     public event UnityAction<Vector2> OnAimEvent;
 
@@ -70,6 +71,18 @@ public class InputReader : ScriptableObject, Controls.IGameplayActions, Controls
                 return;
         }
     }
+
+    public void OnRage(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Started:
+                OnRageEvent?.Invoke();
+                return;
+        }
+    }
+
+
 
     public void OnInteract(InputAction.CallbackContext context)
     {

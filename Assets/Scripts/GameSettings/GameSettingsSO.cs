@@ -12,4 +12,8 @@ public class GameSettingsSO : ScriptableObject
     [Range(1,63)]
     [SerializeField]
     public int TotalScore;
+
+    [Range(1,20)]
+    [SerializeField]
+    public int RageThreshold;
 }
