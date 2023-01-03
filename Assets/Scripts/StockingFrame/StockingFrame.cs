@@ -8,7 +8,7 @@ public class StockingFrame : MonoBehaviour
     [SerializeField]
     private VoidEventChannelSO _onFrameDestroyedEvent;
 
-    [Range(0.01f, 3f)]
+    [Range(0.01f, 10f)]
     [SerializeField]
     private float _spawnHealth;
 
