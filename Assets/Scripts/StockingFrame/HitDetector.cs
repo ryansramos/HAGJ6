@@ -92,6 +92,12 @@ public class HitDetector : MonoBehaviour
         return output;
     }
 
+    public float GetDistanceToNearestTarget(Vector3 position)
+    {
+        GameObject nearest = GetNearestTarget(position, out float distance);
+        return distance;
+    }
+
     public void AddTarget(GameObject target)
     {
         _targetList.Add(target);
