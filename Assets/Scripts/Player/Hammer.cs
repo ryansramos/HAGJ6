@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Hammer : MonoBehaviour
 {
+    [Header("Broadcasting on: ")]
+    [SerializeField]
+    private VoidEventChannelSO _perfectCooldownEvent;
+
+    [SerializeField]
+    private VoidEventChannelSO _cooldownFailedEvent;
+
     private Animator _animator;
 
     public HitSender sender;
@@ -12,8 +19,15 @@ public class Hammer : MonoBehaviour
     [SerializeField]
     private HammerSettingsSO _settings;
 
+    [SerializeField]
+    private VoidEventChannelSO 
+        _onRageStartEvent,
+        _onRageStopEvent;
+
+
     private bool _isOnCooldown = false;
     private bool _resetInput = false;
+    private bool _isRaging = false;
     private IEnumerator _coroutine;
 
     void Awake()
@@ -21,9 +35,22 @@ public class Hammer : MonoBehaviour
         _animator = gameObject.GetComponent<Animator>();
     }
 
+    void OnEnable()
+    {
+        _onRageStartEvent.OnEventRaised += OnRageStart;
+        _onRageStopEvent.OnEventRaised += OnRageStop;
+    }
+
+    void OnDisable()
+    {
+        _onRageStartEvent.OnEventRaised += OnRageStart;
+        _onRageStopEvent.OnEventRaised -= OnRageStop;
+    }
+
     void Start()
     {
         _isOnCooldown = false;
+        _isRaging = false;
     }
 
     public void Swing()
@@ -43,6 +70,22 @@ public class Hammer : MonoBehaviour
         {
             _resetInput = true;
         }
+    }
+
+    void OnRageStart()
+    {
+        StopAllCoroutines();
+        OnCooldownFinished();
+        _isRaging = true;
+        cooldownBar.OnRageStart();
+    }
+
+    void OnRageStop()
+    {
+        StopAllCoroutines();
+        OnCooldownFinished();
+        _isRaging = false;
+        cooldownBar.OnRageStop();
     }
 
     IEnumerator CooldownStart()
@@ -65,6 +108,11 @@ public class Hammer : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
+        if (_isRaging)
+        {
+            OnCooldownFinished();
+            yield break;
+        }
         StartCoroutine(CooldownPerfect(timer));
     }
 
@@ -75,7 +123,7 @@ public class Hammer : MonoBehaviour
         {
             if (_resetInput)
             {
-                OnCooldownFinished();
+                OnPerfectCooldown();
                 yield break;
             }
             UpdateCooldownSlider(timer);
@@ -105,6 +153,7 @@ public class Hammer : MonoBehaviour
 
     IEnumerator CooldownPunish(float startTime)
     {
+        _cooldownFailedEvent.RaiseEvent();
         float timer = startTime;
         while (timer < _settings.CooldownTime * _settings.CooldownPunishMod)
         {
@@ -119,7 +168,17 @@ public class Hammer : MonoBehaviour
     void UpdateCooldownSlider(float currentTime)
     {
         float percentComplete = currentTime / _settings.CooldownTime;
+        if (_isRaging)
+        {
+            percentComplete /= _settings.CooldownPerfectStart;
+        }
         cooldownBar.UpdateSlider(percentComplete);
+    }
+
+    void OnPerfectCooldown()
+    {
+        _perfectCooldownEvent.RaiseEvent();
+        OnCooldownFinished();
     }
 
     void OnCooldownFinished()

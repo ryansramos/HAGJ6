@@ -9,6 +9,7 @@ public class GameStateManager : MonoBehaviour
     public Scorekeeper score;
     public UIManager ui;
     public FrameManager frame;
+    public RageManager rage;
 
     [Header("Listening on:")]
     [SerializeField]
@@ -45,6 +46,7 @@ public class GameStateManager : MonoBehaviour
         input.StartGameplay();
         score.StartGameplay();
         frame.OnGameStart();
+        rage.OnGameStart();
     }
 
     void StopGame()

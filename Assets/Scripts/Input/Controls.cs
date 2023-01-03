@@ -80,6 +80,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rage"",
+                    ""type"": ""Button"",
+                    ""id"": ""84b8121b-f82b-4668-8392-b20c8dd2c1db"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -148,6 +157,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""ResetSecondary"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8ceb6a82-ea60-4f8e-b72d-02f56385f580"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""default"",
+                    ""action"": ""Rage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -207,6 +227,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Gameplay_Aim = m_Gameplay.FindAction("Aim", throwIfNotFound: true);
         m_Gameplay_ResetPrimary = m_Gameplay.FindAction("ResetPrimary", throwIfNotFound: true);
         m_Gameplay_ResetSecondary = m_Gameplay.FindAction("ResetSecondary", throwIfNotFound: true);
+        m_Gameplay_Rage = m_Gameplay.FindAction("Rage", throwIfNotFound: true);
         // Menus
         m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
         m_Menus_Proceed = m_Menus.FindAction("Proceed", throwIfNotFound: true);
@@ -275,6 +296,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Aim;
     private readonly InputAction m_Gameplay_ResetPrimary;
     private readonly InputAction m_Gameplay_ResetSecondary;
+    private readonly InputAction m_Gameplay_Rage;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -285,6 +307,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Aim => m_Wrapper.m_Gameplay_Aim;
         public InputAction @ResetPrimary => m_Wrapper.m_Gameplay_ResetPrimary;
         public InputAction @ResetSecondary => m_Wrapper.m_Gameplay_ResetSecondary;
+        public InputAction @Rage => m_Wrapper.m_Gameplay_Rage;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -312,6 +335,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @ResetSecondary.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnResetSecondary;
                 @ResetSecondary.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnResetSecondary;
                 @ResetSecondary.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnResetSecondary;
+                @Rage.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRage;
+                @Rage.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRage;
+                @Rage.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRage;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -334,6 +360,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @ResetSecondary.started += instance.OnResetSecondary;
                 @ResetSecondary.performed += instance.OnResetSecondary;
                 @ResetSecondary.canceled += instance.OnResetSecondary;
+                @Rage.started += instance.OnRage;
+                @Rage.performed += instance.OnRage;
+                @Rage.canceled += instance.OnRage;
             }
         }
     }
@@ -388,6 +417,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnAim(InputAction.CallbackContext context);
         void OnResetPrimary(InputAction.CallbackContext context);
         void OnResetSecondary(InputAction.CallbackContext context);
+        void OnRage(InputAction.CallbackContext context);
     }
     public interface IMenusActions
     {

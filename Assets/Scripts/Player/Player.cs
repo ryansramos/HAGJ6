@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     public Hammer 
         LHammer,
         RHammer;
+    
+    [SerializeField]
+    public RageManager rageManager;
 
     void OnEnable()
     {
@@ -20,6 +23,7 @@ public class Player : MonoBehaviour
         _input.OnResetPrimaryEvent += OnResetPrimary;
         _input.OnResetSecondaryEvent += OnResetSecondary;
         _input.OnInteractEvent += OnInteract;
+        _input.OnRageEvent += OnRage;
     }
     void OnDisable()
     {
@@ -28,6 +32,7 @@ public class Player : MonoBehaviour
         _input.OnResetPrimaryEvent -= OnResetPrimary;
         _input.OnResetSecondaryEvent -= OnResetSecondary;
         _input.OnInteractEvent -= OnInteract;
+        _input.OnRageEvent -= OnRage;
     }
 
     void OnPrimary()
@@ -48,6 +53,11 @@ public class Player : MonoBehaviour
     void OnResetSecondary()
     {
         RHammer.TryResetCooldown();
+    }
+
+    void OnRage()
+    {
+        rageManager.RageInput();
     }
 
     void OnInteract()

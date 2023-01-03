@@ -8,6 +8,7 @@ public class CooldownBar : MonoBehaviour
     private HammerSettingsSO _settings;
     public SpriteRenderer BarRenderer;
     public Sprite[] BarSprites;
+    public Sprite[] SliderSprites;
     public GameObject Slider;
     public GameObject PerfectRegion;
     
@@ -27,6 +28,7 @@ public class CooldownBar : MonoBehaviour
     public void OnGameStart()
     {
         CooldownFinished();
+        OnRageStop();
     }
 
     public void OnGameOver()
@@ -90,5 +92,17 @@ public class CooldownBar : MonoBehaviour
             xPosition = xCenterPercent * (_rightBarBound - _leftBarBound) + _leftBarBound;
         }
         PerfectRegion.transform.position = new Vector3(xPosition, _barHeight, 0f);
+    }
+
+    public void OnRageStart()
+    {
+        PerfectRegion.SetActive(false);
+        Slider.GetComponent<SpriteRenderer>().sprite = SliderSprites[1];
+    }
+
+    public void OnRageStop()
+    {
+        PerfectRegion.SetActive(true);
+        Slider.GetComponent<SpriteRenderer>().sprite = SliderSprites[0];
     }
 }
