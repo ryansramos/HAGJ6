@@ -35,6 +35,7 @@ public class TargetGenerator : MonoBehaviour
     private float _lowerBound;
 
     private bool _isSpawning = false;
+    private bool _isSpawnActive;
 
     void Awake()
     {
@@ -59,16 +60,17 @@ public class TargetGenerator : MonoBehaviour
     {
         _currentTargets = 0;
         _isSpawning = false;
+        _isSpawnActive = true;
     }
 
     public void OnGameOver()
     {
-
+        _isSpawnActive = false;
     }
 
     void Update()
     {   
-        if (_currentTargets < _maxTargets && !_isSpawning)
+        if (_isSpawnActive && _currentTargets < _maxTargets && !_isSpawning)
         {
             _isSpawning = true;
             StartCoroutine(SpawnTarget());

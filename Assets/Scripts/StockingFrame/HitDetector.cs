@@ -12,15 +12,28 @@ public class HitDetector : MonoBehaviour
     [SerializeField]
     private VoidEventChannelSO _targetDestroyedEvent;
 
+    [SerializeField]
+    private VoidEventChannelSO _perfectHitEvent;
+
     [Range(0f,2f)]
     [SerializeField]
     private float _hitDistance;
 
+    [Range(0f, 1f)]
+    [SerializeField]
+    private float _perfectDistance;
+
     [SerializeField]
     private float _hitDamage;
 
+    [Range(1f,5f)]
+    [SerializeField]
+    private float _perfectHitMultiplier;
+
     [SerializeField]
     public StockingFrame _frame;
+
+    public FeedbackUI _feedback;
 
     private List<GameObject> _targetList = new List<GameObject>();
 
@@ -36,11 +49,6 @@ public class HitDetector : MonoBehaviour
 
     public void OnGameStart()
     {
-        _targetList.Clear();
-    }
-
-    public void OnGameOver()
-    {
         if (_targetList.Count > 0)
         {
             foreach (GameObject target in _targetList)
@@ -49,6 +57,11 @@ public class HitDetector : MonoBehaviour
             }
         }
         _targetList.Clear();
+    }
+
+    public void OnGameOver()
+    {
+
     }
 
     void OnHitSend(Vector3 position)
@@ -62,7 +75,17 @@ public class HitDetector : MonoBehaviour
         GameObject nearestTarget = GetNearestTarget(worldPosition, out float distance);
         if (Mathf.Abs(distance) <= _hitDistance)
         {
-            _frame.AddDamage(_hitDamage);
+            if (Mathf.Abs(distance) < _hitDistance * _perfectDistance)
+            {
+                _feedback.OnPerfect(worldPosition);
+                _frame.AddDamage(_hitDamage * _perfectHitMultiplier);
+                _perfectHitEvent.RaiseEvent();
+            }
+            else
+            {   
+                _feedback.OnHit(worldPosition);
+                _frame.AddDamage(_hitDamage);
+            }
             _targetList.Remove(nearestTarget);
             _targetDestroyedEvent.RaiseEvent();
             Destroy(nearestTarget);
