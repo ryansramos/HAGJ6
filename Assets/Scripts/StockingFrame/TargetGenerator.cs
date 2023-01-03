@@ -23,10 +23,18 @@ public class TargetGenerator : MonoBehaviour
 
     private SpriteRenderer _renderer;
 
+    [SerializeField]
+    private float _targetDistanceBuffer;
+
+    [SerializeField]
+    private float _targetSpawnLag;
+
     private float _leftBound;
     private float _rightBound;
     private float _upperBound;
     private float _lowerBound;
+
+    private bool _isSpawning = false;
 
     void Awake()
     {
@@ -50,6 +58,7 @@ public class TargetGenerator : MonoBehaviour
     public void OnGameStart()
     {
         _currentTargets = 0;
+        _isSpawning = false;
     }
 
     public void OnGameOver()
@@ -59,19 +68,30 @@ public class TargetGenerator : MonoBehaviour
 
     void Update()
     {   
-        if (_currentTargets < _maxTargets)
+        if (_currentTargets < _maxTargets && !_isSpawning)
         {
-            SpawnTarget();
+            _isSpawning = true;
+            StartCoroutine(SpawnTarget());
         }
     }
 
-    void SpawnTarget()
+    IEnumerator SpawnTarget()
     {
-        Vector3 position = GetPosition();
+        yield return new WaitForSeconds(_targetSpawnLag);
+        bool isSpawnValid = false;
+        Vector3 position = new Vector3();
+        while (!isSpawnValid)
+        {
+            position = GetPosition();
+            isSpawnValid = _detector.GetDistanceToNearestTarget(position) > _targetDistanceBuffer;
+            yield return null;
+        }
+
         GameObject target = Instantiate(_targetPrefab, position, Quaternion.identity);
         target.transform.parent = this.gameObject.transform;
         _detector.AddTarget(target);
         _currentTargets++;
+        _isSpawning = false;
     }
 
     Vector3 GetPosition()
@@ -85,10 +105,12 @@ public class TargetGenerator : MonoBehaviour
     void CalculateBounds()
     {
         Bounds bounds = _renderer.sprite.bounds;
-        _leftBound = bounds.center.x - bounds.extents.x;
-        _rightBound = bounds.center.x + bounds.extents.x;
-        _upperBound = bounds.center.y + bounds.extents.y;
-        _lowerBound = bounds.center.y - bounds.extents.y;
+        float xPosition = gameObject.transform.position.x;
+        float yPosition = gameObject.transform.position.y;
+        _leftBound = xPosition - bounds.extents.x;
+        _rightBound = xPosition + bounds.extents.x;
+        _upperBound = yPosition + bounds.extents.y;
+        _lowerBound = yPosition - bounds.extents.y;
     }
 
     void OnTargetDestroyed()
