@@ -33,6 +33,9 @@ public class HitDetector : MonoBehaviour
     [SerializeField]
     public StockingFrame _frame;
 
+    [SerializeField]
+    private HammerSettingsSO _settings;
+
     public FeedbackUI _feedback;
 
     private List<GameObject> _targetList = new List<GameObject>();
@@ -78,18 +81,24 @@ public class HitDetector : MonoBehaviour
             if (Mathf.Abs(distance) < _hitDistance * _perfectDistance)
             {
                 _feedback.OnPerfect(worldPosition);
-                _frame.AddDamage(_hitDamage * _perfectHitMultiplier);
                 _perfectHitEvent.RaiseEvent();
+                StartCoroutine(AddDamage(_hitDamage * _perfectHitMultiplier));
             }
             else
             {   
                 _feedback.OnHit(worldPosition);
-                _frame.AddDamage(_hitDamage);
+                StartCoroutine(AddDamage(_hitDamage));
             }
             _targetList.Remove(nearestTarget);
             _targetDestroyedEvent.RaiseEvent();
             Destroy(nearestTarget);
         }
+    }
+
+    IEnumerator AddDamage(float amount)
+    {
+        yield return new WaitForSeconds(_settings.HammerSwingLag);
+        _frame.AddDamage(amount);
     }
 
     GameObject GetNearestTarget(Vector3 position, out float distance)

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82594fef40f2eb741ad189c8378118d7, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  GameDuration: 300
+  GameDuration: 59
   TotalScore: 63
   RageThreshold: 5

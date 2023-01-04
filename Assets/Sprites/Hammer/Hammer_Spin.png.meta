@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6a8d4a1e44dfea94aa8951ddf1270a5f
+guid: b98e78753d994514db94698bc18b9eb1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -129,7 +129,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hammer_Idle_0
+      name: Hammer_Spin_0
       rect:
         serializedVersion: 2
         x: 0
@@ -143,14 +143,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63d7ac29f1bedc04e882be8afe381e51
-      internalID: 55656872
+      spriteID: 2b58f7074daaa49458b8624dfa89bc36
+      internalID: 1078326984
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hammer_Idle_1
+      name: Hammer_Spin_1
       rect:
         serializedVersion: 2
         x: 80
@@ -164,14 +164,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b977fb0d111072e49a7607259eb7b0a9
-      internalID: 1828784058
+      spriteID: a51cab98ee9e373499d9aee78d3dd2c3
+      internalID: 1664563593
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hammer_Idle_2
+      name: Hammer_Spin_2
       rect:
         serializedVersion: 2
         x: 160
@@ -185,14 +185,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9f17ec75f0baea40a850bb5ec2f288a
-      internalID: 1022145105
+      spriteID: 629eac90db3f57b4cad1e0e3b77e9a78
+      internalID: 1124442532
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hammer_Idle_3
+      name: Hammer_Spin_3
       rect:
         serializedVersion: 2
         x: 0
@@ -206,14 +206,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7825f91b9d35e247b3acc45812e5b44
-      internalID: -2103463922
+      spriteID: c569c40e5d503d8468d253bdc21d7f3e
+      internalID: -1639522709
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hammer_Idle_4
+      name: Hammer_Spin_4
       rect:
         serializedVersion: 2
         x: 80
@@ -227,14 +227,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 580b542291bc22b41b8998b3ee64b9df
-      internalID: -741809573
+      spriteID: fb50513185e78a3428762663c3503688
+      internalID: 893284661
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hammer_Idle_5
+      name: Hammer_Spin_5
       rect:
         serializedVersion: 2
         x: 160
@@ -248,8 +248,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac1d6bcfd30070545ac3f51ae764a7b6
-      internalID: 1638550816
+      spriteID: 4a7a3e6ec9da46f409ce6e1f035f673a
+      internalID: 2099924584
       vertices: []
       indices: 
       edges: []
@@ -265,12 +265,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Hammer_Idle_1: 1828784058
-      Hammer_Idle_4: -741809573
-      Hammer_Idle_2: 1022145105
-      Hammer_Idle_3: -2103463922
-      Hammer_Idle_5: 1638550816
-      Hammer_Idle_0: 55656872
+      Hammer_Spin_2: 1124442532
+      Hammer_Spin_0: 1078326984
+      Hammer_Spin_4: 893284661
+      Hammer_Spin_5: 2099924584
+      Hammer_Spin_3: -1639522709
+      Hammer_Spin_1: 1664563593
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

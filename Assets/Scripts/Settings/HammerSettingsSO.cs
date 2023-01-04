@@ -15,4 +15,7 @@ public class HammerSettingsSO : ScriptableObject
 
     [Range(1f, 2f)]
     public float CooldownPunishMod;
+
+    [Range(0f, 1f)]
+    public float HammerSwingLag;
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Hammer : MonoBehaviour
 {
@@ -30,6 +31,9 @@ public class Hammer : MonoBehaviour
     private bool _isRaging = false;
     private IEnumerator _coroutine;
 
+    public UnityEvent<Hammer, float> MoveToTargetEvent;
+    public UnityEvent<Hammer, float> ReturnToPlayerEvent;
+
     void Awake()
     {
         _animator = gameObject.GetComponent<Animator>();
@@ -47,10 +51,17 @@ public class Hammer : MonoBehaviour
         _onRageStopEvent.OnEventRaised -= OnRageStop;
     }
 
-    void Start()
+    public void OnGameStart()
     {
+        OnCooldownFinished();
         _isOnCooldown = false;
         _isRaging = false;
+    }
+
+    public void OnGameOver()
+    {
+        OnRageStop();
+        StopAllCoroutines();
     }
 
     public void Swing()
@@ -61,6 +72,7 @@ public class Hammer : MonoBehaviour
             _animator.SetTrigger("OnSwing");
             _coroutine = CooldownStart();
             StartCoroutine(_coroutine);
+            MoveToTargetEvent?.Invoke(this, _settings.CooldownTime * _settings.CooldownPerfectStart);
         }
     }
 
@@ -82,8 +94,6 @@ public class Hammer : MonoBehaviour
 
     void OnRageStop()
     {
-        StopAllCoroutines();
-        OnCooldownFinished();
         _isRaging = false;
         cooldownBar.OnRageStop();
     }
@@ -135,6 +145,7 @@ public class Hammer : MonoBehaviour
 
     IEnumerator CooldownEnd(float startTime)
     {
+        ReturnToPlayerEvent?.Invoke(this, _settings.CooldownTime - startTime);
         float timer = startTime;
         while (timer < _settings.CooldownTime)
         {
@@ -177,12 +188,14 @@ public class Hammer : MonoBehaviour
 
     void OnPerfectCooldown()
     {
+        _animator.SetTrigger("OnPerfectCooldown");
         _perfectCooldownEvent.RaiseEvent();
         OnCooldownFinished();
     }
 
     void OnCooldownFinished()
     {
+        ReturnToPlayerEvent?.Invoke(this, 0f);
         cooldownBar.CooldownFinished();
         _resetInput = false;
         _isOnCooldown = false;

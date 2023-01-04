@@ -37,6 +37,9 @@ public class TargetGenerator : MonoBehaviour
     private bool _isSpawning = false;
     private bool _isSpawnActive;
 
+    [SerializeField]
+    private HammerSettingsSO _settings;
+
     void Awake()
     {
         _renderer = gameObject.GetComponent<SpriteRenderer>();
@@ -119,5 +122,10 @@ public class TargetGenerator : MonoBehaviour
     {
         _currentTargets--;
         _currentTargets = Mathf.Max(_currentTargets, 0);
+    }
+
+    IEnumerator UpdateTargets()
+    {
+        yield return null;
     }
 }
