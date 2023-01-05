@@ -82,12 +82,12 @@ public class HitDetector : MonoBehaviour
             {
                 _feedback.OnPerfect(worldPosition);
                 _perfectHitEvent.RaiseEvent();
-                StartCoroutine(AddDamage(_hitDamage * _perfectHitMultiplier));
+                StartCoroutine(AddDamage(2));
             }
             else
             {   
                 _feedback.OnHit(worldPosition);
-                StartCoroutine(AddDamage(_hitDamage));
+                StartCoroutine(AddDamage(1));
             }
             _targetList.Remove(nearestTarget);
             _targetDestroyedEvent.RaiseEvent();
@@ -95,7 +95,7 @@ public class HitDetector : MonoBehaviour
         }
     }
 
-    IEnumerator AddDamage(float amount)
+    IEnumerator AddDamage(int amount)
     {
         yield return new WaitForSeconds(_settings.HammerSwingLag);
         _frame.AddDamage(amount);

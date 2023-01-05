@@ -104,6 +104,10 @@ public class SpriteLight : MonoBehaviour
 
     IEnumerator RageColor()
     {
+        if (_rageRate == 0)
+        {
+            yield break;
+        }
         while (_isRaging)
         {
             Color.RGBToHSV(_light.color, out float h, out float s, out float v);
