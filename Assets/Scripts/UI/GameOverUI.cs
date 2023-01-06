@@ -14,6 +14,12 @@ public class GameOverUI : MonoBehaviour
     private VoidEventChannelSO _gameResetEvent;
 
     [SerializeField]
+    private StringEventChannelSO _sceneLoadRequest;
+
+    [SerializeField]
+    private string _titleScene;
+
+    [SerializeField]
     private string[] _rankResults;
     [SerializeField]
     private TextBlock[] _flavorResults;
@@ -99,6 +105,6 @@ public class GameOverUI : MonoBehaviour
 
     void OnQuit()
     {
-        Application.Quit();
+        _sceneLoadRequest.RaiseEvent(_titleScene);
     }
 }
