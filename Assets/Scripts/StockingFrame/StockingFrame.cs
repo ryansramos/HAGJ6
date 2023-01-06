@@ -65,11 +65,11 @@ public class StockingFrame : MonoBehaviour
     {
         float healthFraction = (float)_currentHealth / (float)_spawnHealth;
         Sprite newSprite = _frameSprites[0];
-        if (healthFraction < .34f)
+        if (healthFraction < .5f)
         {
             newSprite = _frameSprites[2];
         }
-        else if (healthFraction < 0.67f)
+        else if (healthFraction < 0.8f)
         {
             newSprite = _frameSprites[1];
         }

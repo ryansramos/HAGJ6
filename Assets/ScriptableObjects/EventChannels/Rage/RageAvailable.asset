@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82594fef40f2eb741ad189c8378118d7, type: 3}
-  m_Name: GameSettings
+  m_Script: {fileID: 11500000, guid: 0f0de0193b5e389499a90986de1392f6, type: 3}
+  m_Name: RageAvailable
   m_EditorClassIdentifier: 
-  GameDuration: 59
-  TotalScore: 63
-  RageThreshold: 2
-  RageDuration: 5

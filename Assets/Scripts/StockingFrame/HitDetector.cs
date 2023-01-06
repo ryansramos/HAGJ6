@@ -15,6 +15,13 @@ public class HitDetector : MonoBehaviour
     [SerializeField]
     private VoidEventChannelSO _perfectHitEvent;
 
+    [SerializeField]
+    private VoidEventChannelSO _rageStartEvent;
+
+    [SerializeField]
+    private VoidEventChannelSO _rageStopEvent;
+    private bool _isRaging;
+
     [Range(0f,2f)]
     [SerializeField]
     private float _hitDistance;
@@ -43,11 +50,15 @@ public class HitDetector : MonoBehaviour
     void OnEnable()
     {
         _hitSendEvent.OnEventRaised += OnHitSend;
+        _rageStartEvent.OnEventRaised += OnRageStart;
+        _rageStopEvent.OnEventRaised += OnRageStop;
     }
 
     void OnDisable()
     {
         _hitSendEvent.OnEventRaised -= OnHitSend;
+        _rageStartEvent.OnEventRaised -= OnRageStart;
+        _rageStopEvent.OnEventRaised -= OnRageStop;
     }
 
     public void OnGameStart()
@@ -67,6 +78,16 @@ public class HitDetector : MonoBehaviour
 
     }
 
+    void OnRageStart()
+    {
+        _isRaging = true;
+    }
+
+    void OnRageStop()
+    {
+        _isRaging = false;
+    }
+
     void OnHitSend(Vector3 position)
     {
         if (!(_targetList.Count > 0))
@@ -80,13 +101,27 @@ public class HitDetector : MonoBehaviour
         {
             if (Mathf.Abs(distance) < _hitDistance * _perfectDistance)
             {
-                _feedback.OnPerfect(worldPosition);
+                if (_isRaging)
+                {
+                    _feedback.OnRage(worldPosition);
+                }
+                else
+                {
+                    _feedback.OnPerfect(worldPosition);
+                }
                 _perfectHitEvent.RaiseEvent();
                 StartCoroutine(AddDamage(2));
             }
             else
             {   
-                _feedback.OnHit(worldPosition);
+                if (_isRaging)
+                {
+                    _feedback.OnRage(worldPosition);
+                }
+                else
+                {
+                    _feedback.OnHit(worldPosition);
+                }
                 StartCoroutine(AddDamage(1));
             }
             _targetList.Remove(nearestTarget);
@@ -98,6 +133,11 @@ public class HitDetector : MonoBehaviour
     IEnumerator AddDamage(int amount)
     {
         yield return new WaitForSeconds(_settings.HammerSwingLag);
+        if (_isRaging)
+        {
+            _frame.AddDamage(4);
+            yield break;
+        }
         _frame.AddDamage(amount);
     }
 

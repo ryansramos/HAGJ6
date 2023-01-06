@@ -16,4 +16,7 @@ public class GameSettingsSO : ScriptableObject
     [Range(1,20)]
     [SerializeField]
     public int RageThreshold;
+
+    [Range(0f,10f)]
+    public float RageDuration;
 }

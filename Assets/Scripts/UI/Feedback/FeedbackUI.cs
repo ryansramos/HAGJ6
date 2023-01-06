@@ -7,7 +7,8 @@ public class FeedbackUI : MonoBehaviour
     [SerializeField]
     private GameObject 
         _perfectTextPrefab,
-        _hitTextPrefab;
+        _hitTextPrefab,
+        _rageTextPrefab;
 
     public RectTransform _canvas;
 
@@ -22,4 +23,12 @@ public class FeedbackUI : MonoBehaviour
         GameObject textObj = Instantiate(_perfectTextPrefab, _canvas.transform);
         textObj.transform.position = position;
     }
+
+    public void OnRage(Vector3 position)
+    {
+        GameObject textObj = Instantiate(_rageTextPrefab, _canvas.transform);
+        textObj.transform.position = position;
+    }
+
+
 }
