@@ -1036,7 +1036,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1626625401}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1813774201}
+        m_TargetAssemblyTypeName: AudioSender, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1626625401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1085,6 +1097,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1813774199}
   - component: {fileID: 1813774200}
+  - component: {fileID: 1813774201}
   m_Layer: 0
   m_Name: TextIntro
   m_TagString: Untagged
@@ -1141,3 +1154,25 @@ MonoBehaviour:
   _sceneToLoad: Title
   _music: {fileID: 1012298121}
   _loadRequestEvent: {fileID: 11400000, guid: 19a86eac74e1eec4ca2cb07e741acf78, type: 2}
+  _sfxChannel: {fileID: 11400000, guid: 845e5035fccca0e44a6199537566a4f2, type: 2}
+  _pianoNotes:
+  - {fileID: 11400000, guid: 7248f1ff2eded24408737bdc3c17aa0b, type: 2}
+  - {fileID: 11400000, guid: f5ae1d97c6354334880f838a567de139, type: 2}
+  - {fileID: 11400000, guid: bc0cbcd4b7d509844ae3f48842ba1ac3, type: 2}
+  - {fileID: 11400000, guid: 8b8e32da14db1ca4eb44a0f1ee46979d, type: 2}
+  - {fileID: 11400000, guid: 819c39002c5c0294a9699996a2854a96, type: 2}
+  - {fileID: 11400000, guid: 9382582536bd28b43a268b9afc0cbb2d, type: 2}
+--- !u!114 &1813774201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813774198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc0e02bb8f58fe249a7f3d119a2158ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxChannel: {fileID: 11400000, guid: 845e5035fccca0e44a6199537566a4f2, type: 2}
+  _audioCue: {fileID: 11400000, guid: dd261460c223d0441b209845eadb89de, type: 2}

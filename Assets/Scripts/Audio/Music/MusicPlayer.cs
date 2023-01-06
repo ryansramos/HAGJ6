@@ -22,7 +22,7 @@ public class MusicPlayer : MonoBehaviour
         _playMusicEvent.OnEventRaised -= PlayMusic;
     }
 
-    void PlayMusic(AudioCueSO cue)
+    void PlayMusic(AudioCueSO cue, AudioKey key)
     {
         if (cue == null)
         {

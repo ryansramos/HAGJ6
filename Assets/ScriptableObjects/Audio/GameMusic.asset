@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: GameMusic
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 4d80a0825fab5cd41b0d7d3795810ad1, type: 3}
+  loop: 1
+  pan: 0

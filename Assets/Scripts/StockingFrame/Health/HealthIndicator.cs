@@ -55,6 +55,13 @@ public class HealthIndicator : MonoBehaviour
     public void NewFrame()
     {
         int length = _indicatorPrefabs.Length;
+        foreach (Textile textile in _indicators)
+        {
+            if (textile != null)
+            {   
+                textile.Drop();
+            }
+        }
         _indicators = new Textile[length];
         for (int i = 0; i < length; i++)
         {

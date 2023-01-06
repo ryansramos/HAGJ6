@@ -6,10 +6,18 @@ using UnityEngine.Events;
 [CreateAssetMenu(menuName = "Events/Audio Cue")]
 public class AudioCueEventChannelSO : ScriptableObject
 {
-    public event UnityAction<AudioCueSO> OnEventRaised;
+    public event UnityAction<AudioCueSO, AudioKey> OnEventRaised;
+    public event UnityAction<AudioKey> OnStopRequested;
 
-    public void RaiseEvent(AudioCueSO cue)
+    public AudioKey RaiseEvent(AudioCueSO cue)
     {
-        OnEventRaised?.Invoke(cue);
+        AudioKey key = new AudioKey();
+        OnEventRaised?.Invoke(cue, key);
+        return key;
+    }
+
+    public void Stop(AudioKey key)
+    {
+        OnStopRequested?.Invoke(key);
     }
 }

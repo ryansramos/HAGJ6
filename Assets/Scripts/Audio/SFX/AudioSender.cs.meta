@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: dc0e02bb8f58fe249a7f3d119a2158ea
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _sfxChannel: {fileID: 11400000, guid: 845e5035fccca0e44a6199537566a4f2, type: 2}
+  - _audioCue: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

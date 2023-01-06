@@ -61,6 +61,7 @@ public class GameStateManager : MonoBehaviour
         timer.OnGameOver();
         frame.OnGameOver();
         player.OnGameOver();
+        rage.OnGameStop();
     }
 
     void OnGameTimerElapsed()

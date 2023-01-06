@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: IntroMusic
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 9308d7e1bd0ec1947a2f308be34f7548, type: 3}
+  loop: 1
+  pan: 0

@@ -51,6 +51,7 @@ public class GameOverUI : MonoBehaviour
     public void OnGameOver(int score)
     {
         SetUIActive(true);
+        score = Mathf.Min(_settings.TotalScore, score);
         scoreText.text = 
             "You managed to break " +
             score + 
