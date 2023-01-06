@@ -31,6 +31,8 @@ public class TextIntro : MonoBehaviour
     [SerializeField]
     private string _sceneToLoad;
 
+    public MusicRequester _music;
+
     [Header("Broadcasting on: ")]
     [SerializeField]
     private StringEventChannelSO _loadRequestEvent;
@@ -43,6 +45,11 @@ public class TextIntro : MonoBehaviour
         _skipButton.onClick.AddListener(OnSkip);
         _card.Initialize();
         StartCoroutine(PlayTextIntro(_textBlocks));
+    }
+
+    void Start()
+    {
+        _music.Play();
     }
 
     void OnDisable()

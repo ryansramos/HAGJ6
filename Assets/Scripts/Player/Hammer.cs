@@ -20,6 +20,9 @@ public class Hammer : MonoBehaviour
     [SerializeField]
     private HammerSettingsSO _settings;
 
+    public FadeOutText _swingInstruction;
+    public FadeOutText _cooldownInstruction;
+
     [SerializeField]
     private VoidEventChannelSO 
         _onRageStartEvent,
@@ -47,8 +50,13 @@ public class Hammer : MonoBehaviour
 
     void OnDisable()
     {
-        _onRageStartEvent.OnEventRaised += OnRageStart;
+        _onRageStartEvent.OnEventRaised -= OnRageStart;
         _onRageStopEvent.OnEventRaised -= OnRageStop;
+    }
+
+    void OnDestroy()
+    {
+        StopAllCoroutines();
     }
 
     public void OnGameStart()
@@ -68,6 +76,7 @@ public class Hammer : MonoBehaviour
     {
         if (!_isOnCooldown)
         {
+            _swingInstruction.FadeOut();
             sender.SendHit();
             _animator.SetTrigger("OnSwing");
             _coroutine = CooldownStart();
@@ -86,7 +95,7 @@ public class Hammer : MonoBehaviour
 
     void OnRageStart()
     {
-        StopAllCoroutines();
+        this.StopAllCoroutines();
         OnCooldownFinished();
         _isRaging = true;
         cooldownBar.OnRageStart();
@@ -188,6 +197,7 @@ public class Hammer : MonoBehaviour
 
     void OnPerfectCooldown()
     {
+        _cooldownInstruction.FadeOut();
         _animator.SetTrigger("OnPerfectCooldown");
         _perfectCooldownEvent.RaiseEvent();
         OnCooldownFinished();

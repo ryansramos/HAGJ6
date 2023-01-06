@@ -226,8 +226,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000045896, y: 0.0000030994}
-  m_SizeDelta: {x: 337.6801, y: 112.5819}
+  m_AnchoredPosition: {x: -0.000009656, y: 0.0000095073}
+  m_SizeDelta: {x: 357.8109, y: 112.5819}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &235914692
 MonoBehaviour:
@@ -533,7 +533,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Skip
+  m_text: Skip Intro
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8c05a0df5581f7041b7b9a80e5ae5bfc, type: 2}
   m_sharedMaterial: {fileID: -5798845481195442960, guid: 8c05a0df5581f7041b7b9a80e5ae5bfc, type: 2}
@@ -813,6 +813,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 198e6698135c88f45a8136e62d1b4e09, type: 3}
+--- !u!1 &1012298118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1012298120}
+  - component: {fileID: 1012298121}
+  m_Layer: 0
+  m_Name: MusicRequester
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1012298120
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012298118}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1012298121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012298118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe3881af8303ef64d9b2a310ad4cfc8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _musicRequestEvent: {fileID: 11400000, guid: 0c3efd14396c12f418171b3539a14417, type: 2}
+  _musicCue: {fileID: 11400000, guid: 73f6c07ab5cdc8944b838daf926e02b3, type: 2}
 --- !u!1 &1029471034
 GameObject:
   m_ObjectHideFlags: 0
@@ -944,8 +990,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -55.599976, y: 14.445984}
-  m_SizeDelta: {x: 42.658905, y: 18.5266}
+  m_AnchoredPosition: {x: -61.183014, y: 15.099998}
+  m_SizeDelta: {x: 66.2249, y: 35.891}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1626625400
 MonoBehaviour:
@@ -966,7 +1012,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -976,10 +1022,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: 42d8e1de42ccc434188b503fa3e3bce4, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 9c57d020133911a4f80cbf1f70dbf554, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 42d8e1de42ccc434188b503fa3e3bce4, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: ebd25d69241d77e4ea0b117aece9c20c, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -1011,8 +1057,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 5b2941980fcac2d43b40af7e3b22c45d, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1081,16 +1127,17 @@ MonoBehaviour:
   - Text: The Napoleonic wars rage in Europe. The United Kingdom clashes with France
       both militarily and economically.
   - Text: High taxes and inflation ravage the British working class. Unemployment
-      is exacerbated by the increased usage of labor-saving machinery by factory
+      is exacerbated by the increased usage of labor saving machinery by factory
       owners.
   - Text: Skilled textile workers find themselves increasingly out of work. Textile
       manufacturers cut costs by using mechanical looms operated by un-apprenticed
       laborers ('colts') to produce cheaper product.
   - Text: The artisans of Nottingham have had enough. An angry crowd gathers outside
       of the town of Arnold, seeking revenge on the hosiers that threaten their livelihoods.
-  - Text: Hammers in hand, they seek to strike the hosiers where it hurts.
+  - Text: Hammers in hand, tonight they hit the hosiers where it hurts.
   _inputBuffer: 1
   _loadLag: 0.5
   _inputManager: {fileID: 341187278}
   _sceneToLoad: Title
+  _music: {fileID: 1012298121}
   _loadRequestEvent: {fileID: 11400000, guid: 19a86eac74e1eec4ca2cb07e741acf78, type: 2}
