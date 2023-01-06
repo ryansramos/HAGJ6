@@ -21,6 +21,7 @@ public class StockingFrame : MonoBehaviour
     private int _currentHealth;
 
     public HealthIndicator _indicator;
+    public AudioSender _frameBreakAudio;
 
     void Awake()
     {
@@ -53,6 +54,7 @@ public class StockingFrame : MonoBehaviour
 
     IEnumerator OnFrameDestroyed()
     {
+        _frameBreakAudio.Play();
         _renderer.sprite = _frameSprites[3];
         _onFrameDestroyedEvent.RaiseEvent();
         yield return new WaitForSeconds(_destroyTime);

@@ -135,6 +135,8 @@ GameObject:
   - component: {fileID: 13343909}
   - component: {fileID: 13343912}
   - component: {fileID: 13343911}
+  - component: {fileID: 13343913}
+  - component: {fileID: 13343914}
   m_Layer: 0
   m_Name: LHammer
   m_TagString: Untagged
@@ -236,6 +238,8 @@ MonoBehaviour:
   ReturnToPlayerEvent:
     m_PersistentCalls:
       m_Calls: []
+  _cooldownAudio: {fileID: 13343913}
+  _cooldownPunishAudio: {fileID: 13343914}
 --- !u!95 &13343912
 Animator:
   serializedVersion: 4
@@ -256,6 +260,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &13343913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13343908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc0e02bb8f58fe249a7f3d119a2158ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxChannel: {fileID: 11400000, guid: 845e5035fccca0e44a6199537566a4f2, type: 2}
+  _audioCue: {fileID: 11400000, guid: b0bb33ec96ac46748a4d6567346e2852, type: 2}
+--- !u!114 &13343914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13343908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc0e02bb8f58fe249a7f3d119a2158ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxChannel: {fileID: 11400000, guid: 845e5035fccca0e44a6199537566a4f2, type: 2}
+  _audioCue: {fileID: 11400000, guid: 6901d50b388169c4cac3991d2549e476, type: 2}
 --- !u!1 &16551134
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,6 +436,8 @@ GameObject:
   - component: {fileID: 27093059}
   - component: {fileID: 27093058}
   - component: {fileID: 27093061}
+  - component: {fileID: 27093063}
+  - component: {fileID: 27093062}
   m_Layer: 0
   m_Name: FeedbackUI
   m_TagString: Untagged
@@ -508,7 +542,38 @@ MonoBehaviour:
   _perfectTextPrefab: {fileID: 2917914496973312325, guid: 7f7f73679336bc24487593b871578fb2, type: 3}
   _hitTextPrefab: {fileID: 350198436476527282, guid: f334040fc6b670a4aa7bad3cf34bb435, type: 3}
   _rageTextPrefab: {fileID: 2917914496973312325, guid: 320823f5d396113448f093e4d597cb43, type: 3}
+  onHitAudio: {fileID: 27093063}
+  onPerfectAudio: {fileID: 27093062}
+  onRageAudio: {fileID: 27093063}
   _canvas: {fileID: 1665409413}
+--- !u!114 &27093062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27093056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc0e02bb8f58fe249a7f3d119a2158ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxChannel: {fileID: 11400000, guid: 845e5035fccca0e44a6199537566a4f2, type: 2}
+  _audioCue: {fileID: 11400000, guid: 16a0a154d67345b45928c54f05a811c6, type: 2}
+--- !u!114 &27093063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27093056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc0e02bb8f58fe249a7f3d119a2158ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxChannel: {fileID: 11400000, guid: 845e5035fccca0e44a6199537566a4f2, type: 2}
+  _audioCue: {fileID: 11400000, guid: c16d5b21d8e6d5440ab8f841d744ea86, type: 2}
 --- !u!1 &89722571
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,6 +587,7 @@ GameObject:
   - component: {fileID: 89722575}
   - component: {fileID: 89722574}
   - component: {fileID: 89722573}
+  - component: {fileID: 89722577}
   m_Layer: 5
   m_Name: GameOverUI
   m_TagString: Untagged
@@ -696,6 +762,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &89722577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89722571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc0e02bb8f58fe249a7f3d119a2158ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxChannel: {fileID: 11400000, guid: 845e5035fccca0e44a6199537566a4f2, type: 2}
+  _audioCue: {fileID: 11400000, guid: dd261460c223d0441b209845eadb89de, type: 2}
 --- !u!1 &90732011
 GameObject:
   m_ObjectHideFlags: 0
@@ -2361,10 +2441,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.113142855
-    y: 0
-    width: 0.7740952
-    height: 1
+    x: 0
+    y: 0.07601351
+    width: 1
+    height: 0.84660053
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -3261,6 +3341,9 @@ GameObject:
   - component: {fileID: 929398510}
   - component: {fileID: 929398514}
   - component: {fileID: 929398515}
+  - component: {fileID: 929398518}
+  - component: {fileID: 929398517}
+  - component: {fileID: 929398516}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3401,7 +3484,52 @@ MonoBehaviour:
   _onRageStoppedEvent: {fileID: 11400000, guid: 8ca282c7e853bf548a4f3090e9c1e24f, type: 2}
   _onRageAvailableEvent: {fileID: 11400000, guid: 15a6d471de62b3e4abbbd779f8ad7204, type: 2}
   _onRageUnavailableEvent: {fileID: 11400000, guid: 81281ee65724b8b46901527290db914a, type: 2}
+  onRageSender: {fileID: 929398516}
+  onRageAvailableSender: {fileID: 929398518}
+  onRageUnavailableSender: {fileID: 929398517}
   _settings: {fileID: 11400000, guid: c641879b430660d49a59d53e43e7933a, type: 2}
+--- !u!114 &929398516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929398509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc0e02bb8f58fe249a7f3d119a2158ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxChannel: {fileID: 11400000, guid: 845e5035fccca0e44a6199537566a4f2, type: 2}
+  _audioCue: {fileID: 11400000, guid: d45e1f5b2dd12564aaa7f0351c733750, type: 2}
+--- !u!114 &929398517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929398509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc0e02bb8f58fe249a7f3d119a2158ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxChannel: {fileID: 11400000, guid: 845e5035fccca0e44a6199537566a4f2, type: 2}
+  _audioCue: {fileID: 11400000, guid: ec318bf2c0661fc4788977dbd1745358, type: 2}
+--- !u!114 &929398518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929398509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc0e02bb8f58fe249a7f3d119a2158ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxChannel: {fileID: 11400000, guid: 845e5035fccca0e44a6199537566a4f2, type: 2}
+  _audioCue: {fileID: 11400000, guid: 4a6a6e6ef11f7cd48946253a987b7f00, type: 2}
 --- !u!1 &963049489
 GameObject:
   m_ObjectHideFlags: 0
@@ -4182,6 +4310,8 @@ GameObject:
   - component: {fileID: 1232248027}
   - component: {fileID: 1232248025}
   - component: {fileID: 1232248024}
+  - component: {fileID: 1232248029}
+  - component: {fileID: 1232248030}
   m_Layer: 0
   m_Name: RHammer
   m_TagString: Untagged
@@ -4216,6 +4346,8 @@ MonoBehaviour:
   ReturnToPlayerEvent:
     m_PersistentCalls:
       m_Calls: []
+  _cooldownAudio: {fileID: 1232248029}
+  _cooldownPunishAudio: {fileID: 1232248030}
 --- !u!95 &1232248025
 Animator:
   serializedVersion: 4
@@ -4303,6 +4435,34 @@ Transform:
   m_Father: {fileID: 929398512}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1232248029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232248023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc0e02bb8f58fe249a7f3d119a2158ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxChannel: {fileID: 11400000, guid: 845e5035fccca0e44a6199537566a4f2, type: 2}
+  _audioCue: {fileID: 11400000, guid: b0bb33ec96ac46748a4d6567346e2852, type: 2}
+--- !u!114 &1232248030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232248023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc0e02bb8f58fe249a7f3d119a2158ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxChannel: {fileID: 11400000, guid: 845e5035fccca0e44a6199537566a4f2, type: 2}
+  _audioCue: {fileID: 11400000, guid: 6901d50b388169c4cac3991d2549e476, type: 2}
 --- !u!1 &1267677416
 GameObject:
   m_ObjectHideFlags: 0
@@ -4757,7 +4917,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1346793978}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 89722577}
+        m_TargetAssemblyTypeName: AudioSender, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1346793978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5542,7 +5714,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1395454713}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 89722577}
+        m_TargetAssemblyTypeName: AudioSender, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1395454713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5595,6 +5779,7 @@ GameObject:
   - component: {fileID: 1396772083}
   - component: {fileID: 1396772084}
   - component: {fileID: 1396772085}
+  - component: {fileID: 1396772086}
   m_Layer: 0
   m_Name: StockingFrame
   m_TagString: Untagged
@@ -5736,6 +5921,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 22dde7638b923834f8bcb60bba57aa03, type: 3}
   _destroyTime: 0.4
   _indicator: {fileID: 2102158018}
+  _frameBreakAudio: {fileID: 1396772086}
 --- !u!114 &1396772085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5751,6 +5937,20 @@ MonoBehaviour:
   frame: {fileID: 1396772084}
   detector: {fileID: 1396772083}
   generator: {fileID: 1396772082}
+--- !u!114 &1396772086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396772079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc0e02bb8f58fe249a7f3d119a2158ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxChannel: {fileID: 11400000, guid: 845e5035fccca0e44a6199537566a4f2, type: 2}
+  _audioCue: {fileID: 11400000, guid: d19accd411fe816438c2f83b9041010f, type: 2}
 --- !u!1 &1401068287
 GameObject:
   m_ObjectHideFlags: 0
@@ -5821,7 +6021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
+  m_ReferencePixelsPerUnit: 16
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
@@ -7554,7 +7754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
+  m_ReferencePixelsPerUnit: 16
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0

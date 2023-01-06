@@ -22,6 +22,11 @@ public class RageManager : MonoBehaviour
     [SerializeField]
     private VoidEventChannelSO _onRageUnavailableEvent;
 
+    public AudioSender
+        onRageSender,
+        onRageAvailableSender,
+        onRageUnavailableSender;
+
     private int _cooldownCount;
 
     [SerializeField]
@@ -38,12 +43,20 @@ public class RageManager : MonoBehaviour
     {
         _onPerfectCooldownEvent.OnEventRaised -= OnPerfectCooldown;
         _onCooldownFailedEvent.OnEventRaised -= OnCooldownFailed;
+        StopAllCoroutines();
+        OnRageStop();
     }
 
     public void OnGameStart()
     {
         _cooldownCount = 0;
         DisableRage();
+    }
+
+    public void OnGameStop()
+    {
+        StopAllCoroutines();
+        OnRageStop();
     }
 
     void OnPerfectCooldown()
@@ -60,12 +73,14 @@ public class RageManager : MonoBehaviour
         _cooldownCount = 0;
         if (_isRageEnabled)
         {
+            onRageUnavailableSender.Play();
             DisableRage();
         }
     }
 
     void EnableRage()
     {
+        onRageAvailableSender.Play();
         _isRageEnabled = true;
         _onRageAvailableEvent.RaiseEvent();
     }
@@ -88,8 +103,15 @@ public class RageManager : MonoBehaviour
 
     IEnumerator Rage(float duration)
     {
+        onRageSender.Play();
         _onRageStartedEvent.RaiseEvent();
         yield return new WaitForSeconds(duration);
+        OnRageStop();
+    }
+
+    void OnRageStop()
+    {
         _onRageStoppedEvent.RaiseEvent();
+        onRageSender.Stop();
     }
 }

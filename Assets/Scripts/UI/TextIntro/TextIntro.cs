@@ -37,6 +37,14 @@ public class TextIntro : MonoBehaviour
     [SerializeField]
     private StringEventChannelSO _loadRequestEvent;
 
+    [SerializeField]
+    private AudioCueEventChannelSO _sfxChannel;
+
+    [SerializeField]
+    private AudioCueSO[] _pianoNotes;
+
+    private int _lastPlayed = 0;
+
     void OnEnable()
     {
         _inputManager.StartMenu();
@@ -62,6 +70,13 @@ public class TextIntro : MonoBehaviour
     {
         if (_isWaitingForInput && !_isSkipping)
         {
+            int rand = -1;
+            while (rand == _lastPlayed || rand < 0)
+            {
+                rand = Random.Range(0, _pianoNotes.Length);
+            }
+            _lastPlayed = rand;
+            _sfxChannel.RaiseEvent(_pianoNotes[rand]);
             _isWaitingForInput = false;
         }
     }

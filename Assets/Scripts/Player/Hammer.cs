@@ -37,6 +37,9 @@ public class Hammer : MonoBehaviour
     public UnityEvent<Hammer, float> MoveToTargetEvent;
     public UnityEvent<Hammer, float> ReturnToPlayerEvent;
 
+    public AudioSender _cooldownAudio;
+    public AudioSender _cooldownPunishAudio;
+
     void Awake()
     {
         _animator = gameObject.GetComponent<Animator>();
@@ -173,6 +176,7 @@ public class Hammer : MonoBehaviour
 
     IEnumerator CooldownPunish(float startTime)
     {
+        _cooldownPunishAudio.Play();
         _cooldownFailedEvent.RaiseEvent();
         float timer = startTime;
         while (timer < _settings.CooldownTime * _settings.CooldownPunishMod)
@@ -197,6 +201,7 @@ public class Hammer : MonoBehaviour
 
     void OnPerfectCooldown()
     {
+        _cooldownAudio.Play();
         _cooldownInstruction.FadeOut();
         _animator.SetTrigger("OnPerfectCooldown");
         _perfectCooldownEvent.RaiseEvent();

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameDuration: 100
   TotalScore: 63
-  RageThreshold: 20
+  RageThreshold: 16
   RageDuration: 3
