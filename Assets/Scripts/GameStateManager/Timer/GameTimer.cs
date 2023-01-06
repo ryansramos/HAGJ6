@@ -23,6 +23,11 @@ public class GameTimer : MonoBehaviour
         StartCoroutine(_coroutine);
     }
 
+    public void OnGameOver()
+    {
+        StopAllCoroutines();
+    }
+
     IEnumerator Timer(float duration)
     {
         if (_settings.GameDuration <= 0)

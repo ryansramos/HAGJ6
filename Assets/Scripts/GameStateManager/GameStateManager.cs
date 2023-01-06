@@ -11,6 +11,7 @@ public class GameStateManager : MonoBehaviour
     public FrameManager frame;
     public RageManager rage;
     public Player player;
+    public MusicRequester gameMusic;
 
     [Header("Listening on:")]
     [SerializeField]
@@ -49,6 +50,7 @@ public class GameStateManager : MonoBehaviour
         frame.OnGameStart();
         rage.OnGameStart();
         player.OnGameStart();
+        gameMusic.Play();
     }
 
     void StopGame()
@@ -56,6 +58,7 @@ public class GameStateManager : MonoBehaviour
         input.StopGameplay();
         int result = score.GetScore();
         ui.OnGameOver(result);
+        timer.OnGameOver();
         frame.OnGameOver();
         player.OnGameOver();
     }

@@ -12,27 +12,27 @@ public class TitleScreen : MonoBehaviour
     private StringEventChannelSO _sceneLoadRequestEvent;
 
     public Button playButton;
-    public Button quitButton;
-    public QuitPrompt quitPrompt;
+    // public Button quitButton;
+    // public QuitPrompt quitPrompt;
 
     void OnEnable()
     {
         playButton.onClick.AddListener(OnPlay);
-        quitButton.onClick.AddListener(OnQuit);
-        quitPrompt.OnReturn.AddListener(OnReturnFromQuit);
+        // quitButton.onClick.AddListener(OnQuit);
+        // quitPrompt.OnReturn.AddListener(OnReturnFromQuit);
     }
 
     void Start()
     {
         SetTitleButtons(true);
-        quitPrompt.gameObject.SetActive(false);
+        // quitPrompt.gameObject.SetActive(false);
     }
 
     void OnDisable()
     {
         playButton.onClick.RemoveListener(OnPlay);
-        quitButton.onClick.RemoveListener(OnQuit);
-        quitPrompt.OnReturn.RemoveListener(OnReturnFromQuit);
+        // quitButton.onClick.RemoveListener(OnQuit);
+        // quitPrompt.OnReturn.RemoveListener(OnReturnFromQuit);
     }
 
     void OnPlay()
@@ -43,18 +43,18 @@ public class TitleScreen : MonoBehaviour
     void OnQuit()
     {
         SetTitleButtons(false);
-        quitPrompt.gameObject.SetActive(true);
+        // quitPrompt.gameObject.SetActive(true);
     }
 
     void OnReturnFromQuit()
     {
-        quitPrompt.gameObject.SetActive(false);
+        // quitPrompt.gameObject.SetActive(false);
         SetTitleButtons(true);
     }
 
     void SetTitleButtons(bool status)
     {
         playButton.interactable = status;
-        quitButton.interactable = status;
+        // quitButton.interactable = status;
     }
 }

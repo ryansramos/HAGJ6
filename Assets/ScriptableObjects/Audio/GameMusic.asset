@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82594fef40f2eb741ad189c8378118d7, type: 3}
-  m_Name: GameSettings
+  m_Script: {fileID: 11500000, guid: 07d780bdbefcb4e4ba6d6e038af123bc, type: 3}
+  m_Name: GameMusic
   m_EditorClassIdentifier: 
-  GameDuration: 100
-  TotalScore: 63
-  RageThreshold: 20
-  RageDuration: 3
+  clip: {fileID: 8300000, guid: 4d80a0825fab5cd41b0d7d3795810ad1, type: 3}

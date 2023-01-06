@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &87784904
 RectTransform:
   m_ObjectHideFlags: 0
@@ -349,7 +349,7 @@ MonoBehaviour:
   m_text: Framebreakers
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8c05a0df5581f7041b7b9a80e5ae5bfc, type: 2}
-  m_sharedMaterial: {fileID: -5798845481195442960, guid: 8c05a0df5581f7041b7b9a80e5ae5bfc, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 00c2d821075c51e468da297d0c4f2b76, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -673,8 +673,6 @@ MonoBehaviour:
   _sceneToLoad: Gameplay
   _sceneLoadRequestEvent: {fileID: 11400000, guid: 19a86eac74e1eec4ca2cb07e741acf78, type: 2}
   playButton: {fileID: 677899381}
-  quitButton: {fileID: 1157834791}
-  quitPrompt: {fileID: 87784905}
 --- !u!1 &874350164
 GameObject:
   m_ObjectHideFlags: 0
@@ -1213,14 +1211,14 @@ MonoBehaviour:
   m_text: Break Frames
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8c05a0df5581f7041b7b9a80e5ae5bfc, type: 2}
-  m_sharedMaterial: {fileID: -5798845481195442960, guid: 8c05a0df5581f7041b7b9a80e5ae5bfc, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 00c2d821075c51e468da297d0c4f2b76, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1305,7 +1303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1157834790
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1467,10 +1465,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: A Luddite Experience
+  m_text: Night of The Luddites
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8c05a0df5581f7041b7b9a80e5ae5bfc, type: 2}
-  m_sharedMaterial: {fileID: -5798845481195442960, guid: 8c05a0df5581f7041b7b9a80e5ae5bfc, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 00c2d821075c51e468da297d0c4f2b76, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

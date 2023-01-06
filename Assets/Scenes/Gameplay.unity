@@ -1309,6 +1309,7 @@ MonoBehaviour:
   frame: {fileID: 1396772085}
   rage: {fileID: 929398515}
   player: {fileID: 929398511}
+  gameMusic: {fileID: 1976809534}
   _onResetEvent: {fileID: 11400000, guid: 814cedc752347fa43a129c52d03473cd, type: 2}
 --- !u!4 &259379061
 Transform:
@@ -1321,7 +1322,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1976809533}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2262,10 +2264,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.10758377
-    width: 1
-    height: 0.7847222
+    x: 0.09911678
+    y: 0
+    width: 0.8025297
+    height: 0.99999994
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -7457,6 +7459,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1964381662}
   m_CullTransparentMesh: 1
+--- !u!1 &1976809532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1976809533}
+  - component: {fileID: 1976809534}
+  m_Layer: 0
+  m_Name: GameMusic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1976809533
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976809532}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 259379061}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1976809534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976809532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe3881af8303ef64d9b2a310ad4cfc8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _musicRequestEvent: {fileID: 11400000, guid: 0c3efd14396c12f418171b3539a14417, type: 2}
+  _musicCue: {fileID: 11400000, guid: bb6ecfdcc19ce7d4f88674118da000f6, type: 2}
 --- !u!1 &1979430748
 GameObject:
   m_ObjectHideFlags: 0
