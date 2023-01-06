@@ -102,7 +102,13 @@ public class CooldownBar : MonoBehaviour
 
     public void OnRageStop()
     {
-        PerfectRegion.SetActive(true);
-        Slider.GetComponent<SpriteRenderer>().sprite = SliderSprites[0];
+        if (PerfectRegion != null)
+        {
+            PerfectRegion.SetActive(true);
+        }
+        if (Slider != null)
+        {
+            Slider.GetComponent<SpriteRenderer>().sprite = SliderSprites[0];
+        }
     }
 }

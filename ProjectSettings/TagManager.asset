@@ -44,3 +44,6 @@ TagManager:
   - name: Target
     uniqueID: 3465819357
     locked: 0
+  - name: Hammer
+    uniqueID: 445549131
+    locked: 0
