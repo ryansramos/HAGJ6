@@ -11,6 +11,8 @@ public class Scorekeeper : MonoBehaviour
     [SerializeField]
     private VoidEventChannelSO _onFrameDestroyedEvent;
 
+    public FramesUI _UI;
+
     public UnityEvent onScoreCompleteEvent;
     public MeterMask _meterMask;
     private int _score;
@@ -28,12 +30,14 @@ public class Scorekeeper : MonoBehaviour
     public void StartGameplay()
     {
         _score = 0;
+        _UI.UpdateUI(_score, _settings.TotalScore);
         _meterMask.ResetMeter();
     }
 
     void OnFrameDestroyed()
     {
         _score++;
+        _UI.UpdateUI(_score, _settings.TotalScore);
         float percentComplete = (float)_score / (float)_settings.TotalScore;
         _meterMask.UpdateMeter(percentComplete);
         if (_score >= _settings.TotalScore)

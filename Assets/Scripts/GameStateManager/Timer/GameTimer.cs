@@ -10,13 +10,15 @@ public class GameTimer : MonoBehaviour
 
     [SerializeField]
     private MeterMask _meterMask;
-
+    
+    public TimeRemainingUI _timeUI;
     public UnityEvent gameTimeElapsedEvent;
     private IEnumerator _coroutine;
 
     public void StartTimer()
     {
         _meterMask.ResetMeter();
+        _timeUI.UpdateUI(_settings.GameDuration);
         _coroutine = Timer(_settings.GameDuration);
         StartCoroutine(_coroutine);
     }
@@ -35,6 +37,7 @@ public class GameTimer : MonoBehaviour
         {
             float percentageComplete = timer / duration;
             _meterMask.UpdateMeter(percentageComplete);
+            _timeUI.UpdateUI(duration - percentageComplete * duration);
             timer += Time.deltaTime;
             yield return null;
         }
@@ -44,5 +47,6 @@ public class GameTimer : MonoBehaviour
     void OnTimerComplete()
     {
         gameTimeElapsedEvent?.Invoke();
+        _timeUI.UpdateUI(0f);
     }
 }

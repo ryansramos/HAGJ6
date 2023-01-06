@@ -8,9 +8,9 @@ public class StockingFrame : MonoBehaviour
     [SerializeField]
     private VoidEventChannelSO _onFrameDestroyedEvent;
 
-    [Range(0.01f, 10f)]
+    [Range(0, 10)]
     [SerializeField]
-    private float _spawnHealth;
+    private int _spawnHealth;
 
     [SerializeField]
     private Sprite[] _frameSprites;
@@ -18,7 +18,9 @@ public class StockingFrame : MonoBehaviour
 
     [SerializeField]
     private float _destroyTime;
-    private float _currentHealth;
+    private int _currentHealth;
+
+    public HealthIndicator _indicator;
 
     void Awake()
     {
@@ -29,6 +31,7 @@ public class StockingFrame : MonoBehaviour
     {
         _currentHealth = _spawnHealth;
         _renderer.sprite = _frameSprites[0];
+        _indicator.OnGameStart();
     }
 
     public void OnGameOver()
@@ -36,9 +39,10 @@ public class StockingFrame : MonoBehaviour
         StopAllCoroutines();
     }
 
-    public void AddDamage(float damage)
+    public void AddDamage(int damage)
     {
         _currentHealth -= damage;
+        _indicator.UpdateHealth(Mathf.Clamp(_currentHealth, 0, _spawnHealth));
         if (_currentHealth <= 0f)
         {
             StartCoroutine(OnFrameDestroyed());
@@ -52,19 +56,20 @@ public class StockingFrame : MonoBehaviour
         _renderer.sprite = _frameSprites[3];
         _onFrameDestroyedEvent.RaiseEvent();
         yield return new WaitForSeconds(_destroyTime);
+        _indicator.NewFrame();
         _currentHealth = _spawnHealth;
         UpdateSprite();
     }
 
     void UpdateSprite()
     {
-        float healthFraction = _currentHealth / _spawnHealth;
+        float healthFraction = (float)_currentHealth / (float)_spawnHealth;
         Sprite newSprite = _frameSprites[0];
-        if (healthFraction < .34f)
+        if (healthFraction < .5f)
         {
             newSprite = _frameSprites[2];
         }
-        else if (healthFraction < 0.67f)
+        else if (healthFraction < 0.8f)
         {
             newSprite = _frameSprites[1];
         }

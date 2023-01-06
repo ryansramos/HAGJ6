@@ -16,13 +16,16 @@ public class RageManager : MonoBehaviour
     [SerializeField]
     private VoidEventChannelSO _onRageStoppedEvent;
 
+    [SerializeField]
+    private VoidEventChannelSO _onRageAvailableEvent;
+
+    [SerializeField]
+    private VoidEventChannelSO _onRageUnavailableEvent;
+
     private int _cooldownCount;
 
     [SerializeField]
     private GameSettingsSO _settings;
-
-    [SerializeField]
-    private float _rageTimer;
 
     private bool _isRageEnabled;
 
@@ -40,7 +43,7 @@ public class RageManager : MonoBehaviour
     public void OnGameStart()
     {
         _cooldownCount = 0;
-        _isRageEnabled = false;
+        DisableRage();
     }
 
     void OnPerfectCooldown()
@@ -57,21 +60,29 @@ public class RageManager : MonoBehaviour
         _cooldownCount = 0;
         if (_isRageEnabled)
         {
-            _isRageEnabled = false;
+            DisableRage();
         }
     }
 
     void EnableRage()
     {
         _isRageEnabled = true;
+        _onRageAvailableEvent.RaiseEvent();
+    }
+
+    void DisableRage()
+    {
+        _isRageEnabled = false;
+        _onRageUnavailableEvent.RaiseEvent();
     }
 
     public void RageInput()
     {
         if (_isRageEnabled)
         {
-            StartCoroutine(Rage(_rageTimer));
-            _isRageEnabled = false;
+            StartCoroutine(Rage(_settings.RageDuration));
+            _cooldownCount = 0;
+            DisableRage();
         }
     }
 

@@ -35,11 +35,25 @@ public class RageMeter : MonoBehaviour
 
     public void OnRageStart()
     {
-
+        StartCoroutine(DepleteMeter(_settings.RageDuration));
     }
+
+    IEnumerator DepleteMeter(float duration)
+    {
+        float timer = 0f;
+        while (timer < duration)
+        {
+            float percentage = 1 - timer / duration;
+            UpdateMeter(percentage);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+    }
+
     public void OnRageStop()
     {
         _cooldownCount = 0;
+        StopAllCoroutines();
         _meter.localScale = Vector3.one;
     }
 
@@ -51,8 +65,13 @@ public class RageMeter : MonoBehaviour
         }
         _cooldownCount++;
         _cooldownCount = Mathf.Min(_cooldownCount, _settings.RageThreshold);
-        float xScale = (float)_cooldownCount / (float)_settings.RageThreshold;
-        xScale = xScale * 3.6f + 1f;
+        float percentage = (float)_cooldownCount / (float)_settings.RageThreshold;
+        UpdateMeter(percentage);
+    }
+
+    void UpdateMeter(float percentage)
+    {
+        float xScale = percentage * 3.6f + 1f;
         Vector3 newScale = new Vector3(xScale, 1f, 1f);
         _meter.localScale = newScale;
     }

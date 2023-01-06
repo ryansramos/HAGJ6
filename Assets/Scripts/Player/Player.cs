@@ -92,11 +92,19 @@ public class Player : MonoBehaviour
     {
         if (hammer == LHammer)
         {
+            if (_lCoroutine != null)
+            {
+                StopCoroutine(_lCoroutine);
+            }
             _lCoroutine = MoveToPosition(hammer.transform, reticle.GetAimPosition(), duration);
             StartCoroutine(_lCoroutine);
         }
         else if (hammer == RHammer)
         {
+            if (_rCoroutine != null)
+            {
+                StopCoroutine(_rCoroutine);
+            }
             _rCoroutine = MoveToPosition(hammer.transform, reticle.GetAimPosition(), duration);
             StartCoroutine(_rCoroutine);
         }
@@ -142,7 +150,7 @@ public class Player : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
-        Vector3 endPosition = Vector3.Lerp(t.position, gameObject.transform.position + start, 1f);
+        Vector3 endPosition = gameObject.transform.position + start;
         t.position = endPosition;
     }
 
@@ -150,11 +158,19 @@ public class Player : MonoBehaviour
     {
         if (hammer == LHammer)
         {
+            if (_lCoroutine != null)
+            {
+                StopCoroutine(_lCoroutine);
+            }
             _lCoroutine = ReturnToPlayer(hammer, duration);
             StartCoroutine(_lCoroutine);
         }
         else if (hammer == RHammer)
         {
+            if (_rCoroutine != null)
+            {
+                StopCoroutine(_rCoroutine);
+            }
             _rCoroutine = ReturnToPlayer(hammer, duration);
             StartCoroutine(_rCoroutine);
         }

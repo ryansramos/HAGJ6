@@ -195,6 +195,10 @@ public class Hammer : MonoBehaviour
 
     void OnCooldownFinished()
     {
+        if (_isRaging)
+        {
+            _animator.SetTrigger("OnPerfectCooldown");
+        }
         ReturnToPlayerEvent?.Invoke(this, 0f);
         cooldownBar.CooldownFinished();
         _resetInput = false;
